@@ -78,8 +78,8 @@ for i in df.columns:
     print(i, ":", df[i].nunique())
     print('-'*80)
 ```
-# Find the indices of the batch start indices i.e., 0.2 time interval
-batch_start_indices = df['Time (h)'].index[df['Time (h)'] == 0.2]
+ Find the indices of the batch start indices i.e., 0.2 time interval
+ batch_start_indices = df['Time (h)'].index[df['Time (h)'] == 0.2]
 ```
 # Print the indices of the batch_start_indices
 batch_start_indices
@@ -199,7 +199,7 @@ The dataset's maximum Offline Penicillin Concentration (P_offline:P(g L^{-1})) r
 # Create an empty list to store batch-wise indices
 batch_indices = []
 ```
-# Initialize variables to track the start and end of a batch
+Initialize variables to track the start and end of a batch
 batch_start = batch_start_indices[0]
 for batch_end in batch_end_indices:
     # Append the indices for the current batch to the list
@@ -207,7 +207,7 @@ for batch_end in batch_end_indices:
     # Update the start of the next batch
     batch_start = batch_end + 1
 ```
-# Find the batch where 'Offline Penicillin concentration (P_offline:P(g L^{-1}))' is 36.18 maximum
+Find the batch where 'Offline Penicillin concentration (P_offline:P(g L^{-1}))' is 36.18 maximum
 target_concentration = 36.18
 target_batch = None
 
@@ -219,7 +219,7 @@ for i, (start, end) in enumerate(batch_indices):
 print(f'Batch with Offline Penicillin concentration {target_concentration} is Batch {target_batch}')
 ```
 
-# Find the start and end indices of Batch 29
+Find the start and end indices of Batch 29
 batch_number = 29
 
 if 1 <= batch_number <= len(batch_indices):
@@ -236,14 +236,14 @@ batch_29_df
 
 batch_29_df.describe().T
 ```
-# Create a 6x6 grid of subplots
+Create a 6x6 grid of subplots
 fig, axes = plt.subplots(7, 5, figsize=(18, 18))
 fig.subplots_adjust(hspace=0.5, wspace=0.5)
 ```
-# Flatten the axes array for easy iteration
+Flatten the axes array for easy iteration
 axes = axes.ravel()
 ```
-# Plot histograms for each variable in batch_29_df
+ Plot histograms for each variable in batch_29_df
 for i, var in enumerate(batch_29_df.columns):
     ax = axes[i]
     ax.hist(batch_29_df[var], bins=20, edgecolor='k')
@@ -339,7 +339,8 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-![image](https://github.com/user-attachments/assets/19a0d91a-0bbc-48ad-afd1-f8ba27074a82)
+![image](https://github.com/user-attachments/assets/c415bba6-f5d0-4805-9261-8f4d91dc5e60)
+
 
 
 
