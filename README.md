@@ -43,6 +43,9 @@ import matplotlib.pyplot as plt
 
 ```
 dataset =  pd.read_csv('100_Batches_IndPenSim_V3.csv')
+```
+#shape of the dataset
+dataset.shape
 
 
 
