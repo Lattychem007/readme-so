@@ -54,29 +54,27 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
+```
 
 
 dataset =  pd.read_csv('100_Batches_IndPenSim_V3.csv')
 
-
-dataset
-
+```
 #shape of the dataset
 dataset.shape
-
+```
 #utilising data in 33 columns for EDA
 df = dataset.iloc[:, :33]
-
+```
 #info of dataset
 df.info()
-
+```
 # Identifying the Batch with Maximun Pencillin Concentarion
 
 Identification of Batch Start and Batch End points
 
 Comparison of Batch End Results
-
+```
 Finding the batch with Best Penicillin Concentration
 
 for i in df.columns:
