@@ -42,10 +42,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 ```
-dataset =  pd.read_csv('100_Batches_IndPenSim_V3.csv')
-```
-#shape of the dataset
-dataset.shape
+
 ```
 
 # Load data
@@ -80,10 +77,10 @@ Finding the batch with Best Penicillin Concentration
 for i in df.columns:
     print(i, ":", df[i].nunique())
     print('-'*80)
-
+```
 # Find the indices of the batch start indices i.e., 0.2 time interval
 batch_start_indices = df['Time (h)'].index[df['Time (h)'] == 0.2]
-
+```
 # Print the indices of the batch_start_indices
 batch_start_indices
 
@@ -126,7 +123,7 @@ results_df
 
 #descriptive statistics of batch end data of all batches
 results_df.describe().T
-
+```
 **Observation:**
 
 Time (h): The time intervals range from 167 hours to 290 hours, with an average time of approximately 227.87 hours.
@@ -198,10 +195,10 @@ Fault Reference (Fault_ref:Fault ref): The fault reference indicates two values,
 0 - Recipe driven 1 - Operator controlled (Control_ref:Control ref): The control reference indicates two values, 0 and 1, suggesting a mix of recipe-driven and operator-controlled batches.
 
 The dataset's maximum Offline Penicillin Concentration (P_offline:P(g L^{-1})) reaching 36.18 g/L indicates a significant achievement in the batch process. To gain deeper insights, we will conduct an in-depth analysis of the control parameters and conditions that contributed to this exceptional output. Understanding the factors that led to such high penicillin concentration is crucial for process optimization and quality improvement in industrial-scale fermentations.
-
+```
 # Create an empty list to store batch-wise indices
 batch_indices = []
-
+```
 # Initialize variables to track the start and end of a batch
 batch_start = batch_start_indices[0]
 for batch_end in batch_end_indices:
@@ -209,7 +206,7 @@ for batch_end in batch_end_indices:
     batch_indices.append((batch_start, batch_end))
     # Update the start of the next batch
     batch_start = batch_end + 1
-
+```
 # Find the batch where 'Offline Penicillin concentration (P_offline:P(g L^{-1}))' is 36.18 maximum
 target_concentration = 36.18
 target_batch = None
@@ -220,7 +217,7 @@ for i, (start, end) in enumerate(batch_indices):
         target_batch = i + 1  # Batch numbers start from 1
 
 print(f'Batch with Offline Penicillin concentration {target_concentration} is Batch {target_batch}')
-
+```
 
 # Find the start and end indices of Batch 29
 batch_number = 29
@@ -234,32 +231,32 @@ else:
 
 batch_29_df = df.loc[31725:33174]
 batch_29_df
-
+```
 # Analysing the batch with highest penicillin concentration
 
 batch_29_df.describe().T
-
+```
 # Create a 6x6 grid of subplots
 fig, axes = plt.subplots(7, 5, figsize=(18, 18))
 fig.subplots_adjust(hspace=0.5, wspace=0.5)
-
+```
 # Flatten the axes array for easy iteration
 axes = axes.ravel()
-
+```
 # Plot histograms for each variable in batch_29_df
 for i, var in enumerate(batch_29_df.columns):
     ax = axes[i]
     ax.hist(batch_29_df[var], bins=20, edgecolor='k')
     ax.set_title(var)
     ax.grid(True)
-
+```
 # Remove empty subplots
 for i in range(len(batch_29_df.columns), 35):
     fig.delaxes(axes[i])
 
 plt.tight_layout()
 plt.show()
-
+```
 **Observation**
 
 Based on the distributions for the variables in the data, here are some observations and insights:
@@ -329,7 +326,7 @@ Viscosity (Viscosity_offline:centPoise): Viscosity is left-skewed, with a mean o
 Fault reference (Fault_ref:Fault ref): Fault reference is constant, with a mean and standard deviation of 0, indicating no variation.
 
 0 - Recipe driven 1 - Operator controlled (Control_ref:Control ref): The variable value is 0, indicating that this batch is recipe drive
-
+```
 # Observation on Penicillin Concentration
 
 # Plot the Penicillin Concentration (P:g/L) for Batch 29
